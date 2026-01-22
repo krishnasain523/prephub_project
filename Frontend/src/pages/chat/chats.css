@@ -1,0 +1,52 @@
+.chats
+{
+    max-width: 700px;
+    overflow-y: scroll;
+    padding: 8rem;
+    /* background-color: aqua; */
+    margin-bottom: 1rem;
+    margin-left: 10px;
+
+}
+.usermassege
+{
+/* width: 20rem; */
+background-color: black;
+height: 30px;
+
+/* margin-left: 50px; */
+padding-bottom: 20px;
+padding-left: 10px;
+padding-right: 20px;
+border-radius: 14px;
+}
+.gptmassege
+{
+background-color: black;
+padding: 0.5rem;
+text-align: left;
+}
+.userdiv
+{
+   max-width: 500px;
+    display: flex;
+  justify-content: flex-end;
+}
+.gptdiv
+{
+ max-width: 500px;
+ margin-top: 80px;
+}
+.gptdiv ol {
+  list-style-type: decimal;
+  padding-left: 30px;
+}
+
+.gptdiv ul {
+  list-style-type: disc;
+  padding-left: 30px;
+}
+
+.gptdiv li {
+  margin-bottom: 6px;
+}
