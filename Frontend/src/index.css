@@ -1,6 +1,7 @@
 @import "tailwindcss";
 body{
-    background: linear-gradient(135deg, #3b82f6, #6366f1);
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #0f0f0f);
+
     color: white;
 }
 /* .chat-bubble-user {

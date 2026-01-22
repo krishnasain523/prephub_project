@@ -18,8 +18,8 @@ return (
 
 </div>
 <div className='flex gap-10'>
-    <button className='px-3 py-2 rounded-sm bg-blue-500 text-[#ffffff]'><Link to="/register" className="text-sm ">Signup</Link></button>
-     <button className='px-3 py-2 rounded-sm bg-blue-500 text-[#ffffff]'><Link to="/login" className="text-sm ">Login</Link></button>
+    <button className='px-3 py-2 rounded-sm bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-[#ffffff]'><Link to="/register" className="text-sm ">Signup</Link></button>
+     <button className='px-3 py-2 rounded-sm bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600  text-[#ffffff]'><Link to="/login" className="text-sm ">Login</Link></button>
 </div>
 <div>
 {user ? (

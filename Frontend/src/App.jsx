@@ -18,6 +18,7 @@ import QuizResult from './pages/quiz/quizresult'
 import Chat from './context/myprovider'
 import Quizpage from './pages/quiz/quizpage'
 import Currsub from './pages/quiz/currsub'
+import Genratequiz from './pages/quiz/genratequiz'
 
 
 export default function App(){
@@ -36,6 +37,7 @@ return (
 <Route path="/pyq" element={<PYQ />} />
 <Route path="/quiz" element={<QuizSubjects/>} />
 <Route path='/quiz/subject/:id' element={<Currsub/>}/>
+<Route path='/quiz/subject/:id/:topicname' element={<Genratequiz/>}/>
 <Route path="/login" element={<Login />} />
 <Route path="/register" element={<Register />} />
 </Routes>
