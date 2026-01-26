@@ -36,8 +36,9 @@ return (
 <Route path="/chat" element={<ChatPage/>} />
 <Route path="/pyq" element={<PYQ />} />
 <Route path="/quiz" element={<QuizSubjects/>} />
-<Route path='/quiz/subject/:id' element={<Currsub/>}/>
-<Route path='/quiz/subject/:id/:topicname' element={<Genratequiz/>}/>
+<Route path='/quiz/subject/:id/:catagory' element={<Currsub/>}/>
+<Route path='/quiz/subject/:id/:catagory/:topicname' element={<Genratequiz/>}/>
+<Route path='/quiz/subject/:id/:catagory/:topicname/:difficulty' element={<QuizTake/>}/>
 <Route path="/login" element={<Login />} />
 <Route path="/register" element={<Register />} />
 </Routes>

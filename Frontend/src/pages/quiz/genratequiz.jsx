@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom"
-
+import { useNavigate } from "react-router-dom";
 export default function Genratequiz()
 {
-    const {topicname}=useParams();
+    const {topicname,catagory}=useParams();
     const [level ,setlevel]=useState('');
     const options=["easy","medium","hard"];
+    const navigate=useNavigate();
+    const {id}=useParams();
+    const handlegenration=()=>{
+ navigate(`/quiz/subject/${id}/${catagory}/${topicname}/${level}`)
+    }
     return(
         <>
         
@@ -16,7 +21,7 @@ export default function Genratequiz()
          return <label key={opt} ><input type="radio" name="Difficulty" value={opt} checked={level===opt} onChange={(e)=>setlevel(e.target.value)} />{opt} <br /></label>
         })}
      </div>
-        <button className="p-3 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white mt-10 border-2 rounded-xl hover:rounded-sm">Genrate quiz</button>
+        <button className="p-3 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white mt-10 border-2 rounded-xl hover:rounded-sm" onClick={handlegenration}>Genrate quiz</button>
        </div>
         </>
     )

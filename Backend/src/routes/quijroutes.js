@@ -35,9 +35,9 @@ router.get("/subjects/:id",asynchandler(async(req,res)=>
         res.json(subject);
        
 }))
-router.get("/subjects/:id/startquiz",asynchandler(async(req,res)=>{
-const {topics,catagory,difficultylevel}=req.body;
-const prompt=`Give me 20 mcq questions of${catagory} the topic is ${topics} and dificulty level should${difficultylevel} in order`;
+router.post("/subjects/:id/startquiz",asynchandler(async(req,res)=>{
+const {topic,catagory,difficultylevel}=req.body;
+const prompt=`Give me 20 mcq questions of${catagory} the topic is ${topic} and dificulty level should${difficultylevel} in order`;
 const answer=await genrateanswer(prompt);
 res.status(200).json({answer});    
 }))

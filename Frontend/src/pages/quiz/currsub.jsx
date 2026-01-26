@@ -7,7 +7,7 @@ export default function Currsub()
   const navigate=useNavigate();
     const{setcurrsub,currsub,currsubid,topic,settopic}=useContext(mycontext);
     
-      const{id}=useParams();
+      const{id,catagory}=useParams();
       useEffect(()=>{
        const fetch = async () => {
             try {
@@ -20,7 +20,7 @@ export default function Currsub()
 
       const handletopic=(topicname)=>{
         settopic(toString(topicname));
-        navigate(`/quiz/subject/${id}/${topicname}`)
+        navigate(`/quiz/subject/${id}/${catagory}/${topicname}`)
       }
 return(<>
     

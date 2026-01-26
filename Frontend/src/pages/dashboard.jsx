@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Dashboard(){
 return (
-<div className="p-6">
+<div className="p-6 ">
 <h1 className="text-2xl font-bold mb-4">Welcome to Prephub</h1>
 <p className="text-gray-600">Use the left menu to navigate: Chat, PYQ, Quiz.</p>
 

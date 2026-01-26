@@ -19,10 +19,10 @@ const navigate=useNavigate();
         }
         fetch()
     }, [])
-const handlesubject=async(id)=>{
+const handlesubject=async(id,catagory)=>{
     try {
         setcurrsubid(id);
-        navigate(`/quiz/subject/${id}`);
+        navigate(`/quiz/subject/${id}/${catagory}`);
     } catch (error) {
         console.log(error);
     }
@@ -37,7 +37,7 @@ if(!subjects)
   <div className='grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3   p-10'>
     {
     subjects.map((sub)=>{
-        return <div onClick={()=>handlesubject(sub._id)} className='h-50 w-80 bg-white text-black p-5 border-2 rounded-xl mb-3  '>
+        return <div onClick={()=>handlesubject(sub._id,sub.code)} className='h-50 w-80 bg-white text-black p-5 border-2 rounded-xl mb-3  '>
             {/* title */}
             <div className='text-xl font-bold '>{sub.name}</div>
             {/* topics */}
