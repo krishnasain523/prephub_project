@@ -37,7 +37,33 @@ router.get("/subjects/:id",asynchandler(async(req,res)=>
 }))
 router.post("/subjects/:id/startquiz",asynchandler(async(req,res)=>{
 const {topic,catagory,difficultylevel}=req.body;
-const prompt=`Give me 20 mcq questions of${catagory} the topic is ${topic} and dificulty level should${difficultylevel} in order`;
+const prompt=`
+Do NOT wrap the response in markdown or triple backticks.
+Return raw JSON only.
+Generate 20 MCQ questions.
+
+Category: ${catagory}
+Topic: ${topic}
+Difficulty: ${difficultylevel}
+
+Return the response in the following JSON format ONLY:
+
+{
+  "mcqs": [
+    {
+      "id": 1,
+      "question": "Question text here",
+      "options": {
+        "a": "Option A",
+        "b": "Option B",
+        "c": "Option C",
+        "d": "Option D"
+      },
+      "correctAnswer": "b"
+    }
+  ]
+}
+`;
 const answer=await genrateanswer(prompt);
 res.status(200).json({answer});    
 }))
