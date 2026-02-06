@@ -14,7 +14,9 @@ export default function Myprovider({children})
         const [currsub, setcurrsub] = useState({});
           const [currsubid, setcurrsubid] = useState('');
           const [topic,settopic]=useState('');
-    const providervalues={newchat,setnewchat,promt,reply,setpromt,setreply,prevchats,setprevchats,currthread,setcurrthread,subjects,setSubjects,currsub,setcurrsub,setcurrsubid,currsubid,topic,settopic};
+           const [mcqs, setmcqs] = useState([]);
+           const[loading,setLoading]=useState(true);
+    const providervalues={newchat,setnewchat,promt,reply,setpromt,setreply,prevchats,setprevchats,currthread,setcurrthread,subjects,setSubjects,currsub,setcurrsub,setcurrsubid,currsubid,topic,settopic,mcqs, setmcqs,loading,setLoading};
     return (
         <>
       <mycontext.Provider value={providervalues}>

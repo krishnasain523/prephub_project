@@ -19,6 +19,7 @@ import Chat from './context/myprovider'
 import Quizpage from './pages/quiz/quizpage'
 import Currsub from './pages/quiz/currsub'
 import Genratequiz from './pages/quiz/genratequiz'
+import Quizsubmit from './pages/quiz/quizsubmit'
 
 
 export default function App(){
@@ -39,6 +40,7 @@ return (
 <Route path='/quiz/subject/:id/:catagory' element={<Currsub/>}/>
 <Route path='/quiz/subject/:id/:catagory/:topicname' element={<Genratequiz/>}/>
 <Route path='/quiz/subject/:id/:catagory/:topicname/:difficulty' element={<QuizTake/>}/>
+<Route path='/quiz/subject/:id/:catagory/:topicname/:difficulty/:result' element={<Quizsubmit/>}/>
 <Route path="/login" element={<Login />} />
 <Route path="/register" element={<Register />} />
 </Routes>

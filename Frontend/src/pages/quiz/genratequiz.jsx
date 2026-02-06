@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
+import { mycontext } from "../../context/mycontext";
+
 export default function Genratequiz()
-{
+{  const{setLoading}=useContext(mycontext);
     const {topicname,catagory}=useParams();
     const [level ,setlevel]=useState('');
     const options=["easy","medium","hard"];
     const navigate=useNavigate();
     const {id}=useParams();
     const handlegenration=()=>{
+     
  navigate(`/quiz/subject/${id}/${catagory}/${topicname}/${level}`)
+  setLoading(true);
     }
     return(
         <>
