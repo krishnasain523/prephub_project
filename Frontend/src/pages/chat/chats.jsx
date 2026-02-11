@@ -17,6 +17,7 @@ const [ch,setch]=useState({});
     setlatestreply(null);
     return
   }
+  
   const content=reply.split(" ");
    let indx=0;
    const intervel=setInterval(()=>{

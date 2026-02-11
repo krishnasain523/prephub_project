@@ -37,16 +37,33 @@ router.get("/subjects/:id",asynchandler(async(req,res)=>
 }))
 router.post("/subjects/:id/startquiz",asynchandler(async(req,res)=>{
 const {topic,catagory,difficultylevel}=req.body;
-const prompt=`
-Do NOT wrap the response in markdown or triple backticks.
-Return raw JSON only.
+const prompt = `
+Return ONLY valid raw JSON.
+Do NOT wrap the entire response in markdown.
+
 Generate 20 MCQ questions.
 
 Category: ${catagory}
 Topic: ${topic}
 Difficulty: ${difficultylevel}
 
-Return the response in the following JSON format ONLY:
+STRICT FORMATTING RULES:
+
+1. If a question contains code, wrap the code inside triple backticks.
+2. Automatically detect and specify the correct language after the backticks 
+   (e.g., javascript, java, python, cpp, c, html, css, sql).
+3. NEVER write the language name alone on a separate line.
+4. ALWAYS use this exact format for code:
+
+\`\`\`language
+code here
+\`\`\`
+
+5. Escape newline characters using \\n inside JSON strings.
+6. Keep the JSON structure exactly as specified.
+7. Do NOT wrap the entire response in markdown.
+
+Return the response strictly in this format:
 
 {
   "mcqs": [
@@ -64,6 +81,7 @@ Return the response in the following JSON format ONLY:
   ]
 }
 `;
+
 const answer=await genrateanswer(prompt);
 res.status(200).json({answer});    
 }))
