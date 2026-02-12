@@ -69,7 +69,7 @@ Return the response strictly in this format:
   "mcqs": [
     {
       "id": 1,
-      "question": "Question text here",
+      "question": "Q.number) Question text here",
       "options": {
         "a": "Option A",
         "b": "Option B",

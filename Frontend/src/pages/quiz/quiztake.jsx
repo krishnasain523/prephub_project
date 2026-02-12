@@ -20,6 +20,15 @@ export default function QuizTake() {
     const [latestquestion, setlatestquetion] = useState("");
     const called = useRef(false);
     const quizkey = `quiz_data_${id}_${catagory}_${topicname}_${difficulty}`
+     const validatequiz = (data) => {
+            for (let mcq of data.mcqs) {
+                if (!mcq.id || !mcq.question || !mcq.options || !mcq.correctAnswer) {
+                    return false;
+                }
+
+            }
+            return true;
+        }
     useEffect(() => {
         if (called.current) return;
         called.current = true;
@@ -28,16 +37,7 @@ export default function QuizTake() {
             setmcqs(JSON.parse(localStorage.getItem(quizkey)))
             return
         }
-        const validatequiz=(data)=>{
-            for(g of data.mcqs)
-            {
-                if(!g.id||!g.question||!g.options||!g.correctanswer)
-                {
-                    return false;
-                }
-                return true
-            }
-        }
+       
         const fatchanswer = async () => {
             try {
                 const body = { topic: topicname, catagory: catagory, difficultylevel: difficulty };
@@ -51,25 +51,22 @@ export default function QuizTake() {
                     cleaned = cleaned.replace(/^```\s*/, "");
                     cleaned = cleaned.replace(/```$/, "");
                 }
-               
-                let retry=0;
-                while(retry<3)
-                {
-                     const parsed = JSON.parse(cleaned);
-                    if(validatequiz(parsed))
-                {
-                     break;
-                     
-                }
-                retry++;
-                }
-                
-                setmcqs(parsed.mcqs);
-                setLoading(false);
-                localStorage.setItem(quizkey, JSON.stringify(parsed.mcqs));
-                console.log(parsed.mcqs);
+              const parsed = JSON.parse(cleaned);
+
+        if (validatequiz(parsed)) {
+            setmcqs(parsed.mcqs);
+            localStorage.setItem(quizkey, JSON.stringify(parsed.mcqs));
+        } else {
+            console.log("Validation failed");
+        }
+
+
+
             } catch (error) {
                 console.log(error);
+            }finally
+            {
+                setLoading(false);
             }
         }
         fatchanswer();
@@ -77,17 +74,6 @@ export default function QuizTake() {
 
     useEffect(() => {
         setselected("");
-        // const content=mcqs[index].question.split(" ");
-        //   let indx=0;
-        //    const intervel=setInterval(()=>{
-        //       setlatestquetion(content.slice(0,indx+1).join(" "))
-        //       indx++;
-        //      if(indx>=content.length)
-        //      {
-        //         clearInterval(intervel);
-        //      }
-        //    },40)
-        //    return ()=> clearInterval(intervel);
     }, [index])
 
     const handlesubmit = () => {
@@ -110,7 +96,8 @@ export default function QuizTake() {
 
         }
 
-        navigate(`/quiz/subject/${id}/${catagory}/${topicname}/${difficulty}/${result}`)
+        navigate(`/quiz/subject/${id}/${catagory}/${topicname}/${difficulty}/${result}`);
+       
     }
     // loading ? <></> :
     if (!mcqs.length) {

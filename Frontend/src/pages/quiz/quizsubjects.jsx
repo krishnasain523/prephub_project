@@ -3,7 +3,7 @@ import axios from 'axios'
 import Currsub from './currsub';
 import { mycontext } from '../../context/mycontext';
 import {useNavigate} from 'react-router-dom';
-
+import{motion} from 'framer-motion';
 export default function QuizSubjects(){
 const navigate=useNavigate();
    const{setSubjects,subjects,currsubid,setcurrsubid}=useContext(mycontext);
@@ -34,7 +34,11 @@ if(!subjects)
   return (
 <>
 
-  <div className='grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3   p-10'>
+  <motion.div
+  initial={{opacity:0,scale:0.8, y:20}}
+  animate={{opacity:1,scale:1, y:0}}
+  transition={{duration:0.6}}
+  className='grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3   p-10'>
     {
     subjects.map((sub)=>{
         return <div onClick={()=>handlesubject(sub._id,sub.code)} className='h-50 w-80 bg-white text-black p-5 border-2 rounded-xl mb-3  '>
@@ -51,7 +55,7 @@ if(!subjects)
         </div>
     })
   }
-  </div>
+  </motion.div>
 </>
 )
 }
