@@ -7,7 +7,7 @@ const URL=process.env.MONGO_URL;
 const session=require("express-session");
 const users=require("./src/models/userschema");
 const dbconnect=require("./src/config/dbconnect");
-
+const resumeroutes=require("./src/routes/resumeroutes");
 const authroutes=require("./src/routes/authroutes")
 const userroutes=require("./src/routes/userroutes")
 const quizroutes=require("./src/routes/quijroutes");
@@ -49,4 +49,5 @@ app.use("/auth",authroutes);
 app.use("/api",quizroutes);
 app.use("/api",pyqroutes);
 app.use("/api", chatroutes);
+app.use("/api",resumeroutes);
 app.use(errorhandler);

@@ -20,6 +20,7 @@ import Quizpage from './pages/quiz/quizpage'
 import Currsub from './pages/quiz/currsub'
 import Genratequiz from './pages/quiz/genratequiz'
 import Quizsubmit from './pages/quiz/quizsubmit'
+import Upload from './pages/resume/upload'
 
 
 export default function App(){
@@ -37,6 +38,7 @@ return (
 <Route path="/chat" element={<ChatPage/>} />
 <Route path="/pyq" element={<PYQ />} />
 <Route path="/quiz" element={<QuizSubjects/>} />
+<Route path="/resume" element={<Upload/>} />
 <Route path='/quiz/subject/:id/:catagory' element={<Currsub/>}/>
 <Route path='/quiz/subject/:id/:catagory/:topicname' element={<Genratequiz/>}/>
 <Route path='/quiz/subject/:id/:catagory/:topicname/:difficulty' element={<QuizTake/>}/>
