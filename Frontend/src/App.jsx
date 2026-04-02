@@ -21,35 +21,40 @@ import Currsub from './pages/quiz/currsub'
 import Genratequiz from './pages/quiz/genratequiz'
 import Quizsubmit from './pages/quiz/quizsubmit'
 import Upload from './pages/resume/upload'
+import Showscore from './pages/resume/showscore'
 
 
-export default function App(){
-return (
-<BrowserRouter>
-<AuthProvider>
-<div className="min-h-screen flex flex-col">
-<Navbar />
-<div className="flex flex-1">
-<Sidebar />
-<div className="flex-1">
-<Routes>
-<Route path="/" element={<Dashboard />}/>
-<Route path="/dashboard" element={<Dashboard />} />
-<Route path="/chat" element={<ChatPage/>} />
-<Route path="/pyq" element={<PYQ />} />
-<Route path="/quiz" element={<QuizSubjects/>} />
-<Route path="/resume" element={<Upload/>} />
-<Route path='/quiz/subject/:id/:catagory' element={<Currsub/>}/>
-<Route path='/quiz/subject/:id/:catagory/:topicname' element={<Genratequiz/>}/>
-<Route path='/quiz/subject/:id/:catagory/:topicname/:difficulty' element={<QuizTake/>}/>
-<Route path='/quiz/subject/:id/:catagory/:topicname/:difficulty/:result' element={<Quizsubmit/>}/>
-<Route path="/login" element={<Login />} />
-<Route path="/register" element={<Register />} />
-</Routes>
-</div>
-</div>
-</div>
-</AuthProvider>
-</BrowserRouter>
-)
+export default function App() {
+    return (
+        <BrowserRouter>
+            <AuthProvider>
+                <div className="min-h-screen flex flex-col">
+                    <Navbar />
+                    <div className="flex flex-1">
+                        <Sidebar />
+                        <div className="flex-1">
+                            <Routes>
+                                <Route path="/login" element={<Login />} />
+                                <Route path="/register" element={<Register />} />
+
+                                <Route element={<ProtectedRoute />}>
+                                    <Route path="/" element={<Dashboard />} />
+                                    <Route path="/dashboard" element={<Dashboard />} />
+                                    <Route path="/chat" element={<ChatPage />} />
+                                    <Route path="/pyq" element={<PYQ />} />
+                                    <Route path="/quiz" element={<QuizSubjects />} />
+                                    <Route path="/resume" element={<Upload />} />
+                                    <Route path="/resume/score" element={<Showscore />} />
+                                    <Route path='/quiz/subject/:id/:catagory' element={<Currsub />} />
+                                    <Route path='/quiz/subject/:id/:catagory/:topicname' element={<Genratequiz />} />
+                                    <Route path='/quiz/subject/:id/:catagory/:topicname/:difficulty' element={<QuizTake />} />
+                                    <Route path='/quiz/subject/:id/:catagory/:topicname/:difficulty/:result' element={<Quizsubmit />} />
+                                </Route>
+                            </Routes>
+                        </div>
+                    </div>
+                </div>
+            </AuthProvider>
+        </BrowserRouter>
+    )
 }

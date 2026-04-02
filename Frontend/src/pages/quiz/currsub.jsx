@@ -29,10 +29,10 @@ return(<>
     initial={{opacity:0,scale:0.8, y:20}}
   animate={{opacity:1,scale:1, y:0}}
   transition={{duration:0.6}}
-   className="w-100 m-auto bg-[#121212]  text-white mt-20 text-center rounded-2xl text-xl font-sans ">
-     <h1 className=" w-1/2  m-auto rounded-3xl font-extrabold font-italic text-3xl bg-gradient-to-r from-green-400 to-green-500 mb-5">Select Topic</h1>
+   className="w-[90%] md:w-full mx-auto bg-[#1f1f1f]  text-white mt-20 text-center rounded-2xl text-xl font-sans ">
+     <h1 className=" w-1/2  m-auto rounded-3xl font-extrabold font-italic text-3xl bg-[#22C55E] mb-5">Select Topic</h1>
      {currsub?.topics?.map((top,index)=>{
-        return <li className=" list-none hover:underline cursor-pointer " onClick={()=>handletopic(top)} key={index}>{top}</li>
+        return <li className=" list-none  hover:underline cursor-pointer " onClick={()=>handletopic(top)} key={index}>{top}</li>
     })}
    </motion.div>
     </>)

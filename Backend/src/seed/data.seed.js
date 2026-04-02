@@ -1,5 +1,6 @@
+require("dotenv").config();
 const subjects=require("../models/subjectschema");
-const dbconnect=require("../config/dbconnect")
+const dbconnect=require("../config/dbconnect");
 const Data=[
   {
     "name": "Data Structures and Algorithms",
@@ -237,31 +238,4 @@ const Data=[
   }
 ]
 
-
-const initdata=async()=>{
-    try {
-       if(process.env.NODE_ENV==="production")
-       {
-        process.exit(1);
-       }
-
-         await dbconnect();
-           console.log("database connected");
-        const count=await subjects.countDocuments();
-        if(count>0)
-        {
-          await subjects.deleteMany({});
-        }
-        else
-        {
-         await subjects.insertMany(Data);
-            console.log("subject data saved")
-            process.exit();
-        }
-    } catch (error) {
-        console.error(error);
-        process.exit(1);
-    }
-
-};
-initdata();
+module.exports=Data

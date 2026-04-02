@@ -1,9 +1,12 @@
 .chats
 {
-    max-width: 700px;
-    overflow-y: scroll;
-    padding: 8rem;
-    /* background-color: aqua; */
+    /* max-width: 700px; */
+    overflow-y: auto;
+    padding: 1rem;
+    background-color:#ECFDF5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 1rem;
     margin-left: 10px;
 
@@ -11,31 +14,36 @@
 .usermassege
 {
 /* width: 20rem; */
-background-color: black;
-height: 30px;
+background-color: #1f1f1f;
+padding: 0.4rem;
+padding-left: 20px;
+padding-right: 20px;
+border-radius: 22px;
 
 /* margin-left: 50px; */
-padding-bottom: 20px;
+/* padding-bottom: 20px;
 padding-left: 10px;
 padding-right: 20px;
-border-radius: 14px;
+border-radius: 14px; */
 }
 .gptmassege
 {
-background-color: black;
+background-color: #1f1f1f;
 padding: 0.5rem;
 text-align: left;
 }
 .userdiv
 {
    max-width: 500px;
-    display: flex;
-  justify-content: flex-end;
+   margin-top: 5rem;
+  align-items: center;
+  padding: 10px;
+ color: white;
 }
 .gptdiv
 {
  max-width: 500px;
- margin-top: 80px;
+ margin-top: 40px;
 }
 .gptdiv ol {
   list-style-type: decimal;
@@ -49,4 +57,11 @@ text-align: left;
 
 .gptdiv li {
   margin-bottom: 6px;
+}
+.history
+{
+  position: absolute;
+  left: 10px;
+  top: 20px;
+
 }

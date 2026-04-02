@@ -6,6 +6,8 @@ const asynchandler = require('../midleware/asynchandler')
 const { uploadcloudinary } = require('../config/cloudconfig')
 const { genratetext } = require('../config/gemini')
 const upload = multer({ storage: multer.memoryStorage() })
+const resume = require('../models/resumeschema')
+const verifyuser=require("../midleware/authmiddleware")
 router.post(
   '/upload',
   upload.single('resume'),
@@ -26,7 +28,7 @@ router.post(
 
         Return STRICT valid JSON.
 Do not include markdown.
-Do not include explanation. and give me sugestion whats new should i write in resume in imrovement_sugestions
+Do not include explanation. and give me sugestion whats new should i write in resume in imrovement_sugestions in easy(english) language 
         {
         "totalrequired_skill":[which exits in description],
         "matched_skill":[which exits in both resume and description],
@@ -37,28 +39,55 @@ Do not include explanation. and give me sugestion whats new should i write in re
         "matched_softskill":[which exits in both resume and description],
         "required_softskill":[which exits in description],
          "missing_softskill":[which is not in resume but exits in description],
-        "weakness":" ",
-        "improvement_sugestions":[]
+        "weakness":" "//tell weakness brefly in 2-3 lines,
+        "improvement_sugestions":[length should be <=4 ]
         }
        resumetext:${resumetext}
        description:${description}
    `
-const result = await genratetext(promt);
-if (!result) {
-  return res.status(500).json({ error: "Empty AI response" });
-}
+    const result = await genratetext(promt)
+    if (!result) {
+      return res.status(500).json({ error: 'Empty AI response' })
+    }
+    try {
+      resumeinfo = JSON.parse(result.trim())
+    } catch (err) {
+      console.log('Invalid JSON:', result)
+      return res.status(500).json({ error: 'Invalid JSON from AI' })
+    }
+    const skill_score =
+      ((resumeinfo.matched_skill.length || 0) /
+        (resumeinfo.totalrequired_skill.length || 1)) *
+      40
+    const experience_ratio =
+      resumeinfo.required_years > 0
+        ? resumeinfo.experience_years / resumeinfo.required_years
+        : 1
+    const ratio = Math.min(experience_ratio, 1)
+    const exprience_score = ratio * 30
+    const education_score = resumeinfo.education_relevent ? 15 : 5
+    const overall_score = skill_score + exprience_score + education_score
+    
+    const saveresume = resume.create({
+      overall_score: Math.round(overall_score),
+      skill_score: Math.round(skill_score),
+      exprience_score: Math.round(exprience_score),
+      education_score:Math.round(education_score),
+      matched_skill: resumeinfo.matched_skill,
+      missing_skill: resumeinfo.missing_skill,
 
-let parsed;
-
-try {
-  parsed = JSON.parse(result.trim());
-} catch (err) {
-  console.log("Invalid JSON:", result);
-  return res.status(500).json({ error: "Invalid JSON from AI" });
-}
-
-res.json(parsed);
+      matched_softskill: resumeinfo.matched_softskill,
+      required_softskill: resumeinfo.required_softskill,
+      missing_softskill: resumeinfo.missing_softskill,
+      weakness: resumeinfo.weakness,
+      improvement_sugestions: resumeinfo.improvement_sugestions
+    })
+    console.log(saveresume);
+    res.json({ massage: 'resume score saved',data:saveresume })
   })
 )
-
+router.get("/upload/resume",asynchandler(async(req,res)=>{
+  const latestresume=await resume.findOne().sort({createdAt:-1});
+  res.json(latestresume);
+}))
 module.exports = router

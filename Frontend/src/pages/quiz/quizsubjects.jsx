@@ -33,22 +33,25 @@ if(!subjects)
 }
   return (
 <>
-
+ <h1 className='ml-4 md:ml-10 font-bold text-3xl text-[#22C55E] mt-6'>Welcome to Prephub.Com</h1>
+ <p className='ml-4 md:ml-12 mt-2 text-[#64748B] font-serif '>Aptitude questions and answers for your placement interviews </p>
   <motion.div
   initial={{opacity:0,scale:0.8, y:20}}
   animate={{opacity:1,scale:1, y:0}}
   transition={{duration:0.6}}
-  className='grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3   p-10'>
+  className='grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center  max-w-6xl  p-2  md:p-6 lg:p-10'>
+   
     {
+        
     subjects.map((sub)=>{
-        return <div onClick={()=>handlesubject(sub._id,sub.code)} className='h-50 w-80 bg-white text-black p-5 border-2 rounded-xl mb-3  '>
+        return <div onClick={()=>handlesubject(sub._id,sub.code)} className='h-52 max-w-[300px] lg:w-80  text-[#1f1f1f] p-5 border-2 rounded-xl mb-3  '>
             {/* title */}
-            <div className='text-xl font-bold '>{sub.name}</div>
+            <div className='text-xl text-[#22C55E] font-bold '>{sub.name}</div>
             {/* topics */}
-            <div className=' h-30 overflow-hidden hover:overflow-auto'>
+            <div className=' h-30 mt-2 overflow-hidden font-serif hover:overflow-auto'>
                 <ul className='pl-2'>
                     {sub.topics.map((top)=>{
-                      return <li>{top}</li>
+                      return <li className=' hover:cursor-pointer'>{top}</li>
                     })}
                 </ul>
             </div>

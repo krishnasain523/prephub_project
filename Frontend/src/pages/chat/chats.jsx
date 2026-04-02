@@ -34,7 +34,7 @@ const [ch,setch]=useState({});
         <div className='chats '>
             {
                 prevchats?.slice(0,-1).map((chat, indx) => (
-                     <div className={chat.role === 'user' ? 'userdiv' : 'gptdiv'} key={indx}>
+                     <div className="userdiv  relative left-20 md:left-20 lg:left-40" key={indx}>
                         {chat.role === 'user' ? <p className="usermassege">{chat.content}</p> 
                         :<ReactMarkdown remarkPlugins={remarkGfm} rehypePlugins={rehypeHiglight}>{chat.content}</ReactMarkdown>}
                     </div>

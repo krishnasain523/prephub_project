@@ -4,38 +4,36 @@ import { AuthContext } from '../context/Authcontext'
 
 
 export default function Navbar() {
-const { user, logout } = useContext(AuthContext)
-const navigate = useNavigate()
+    const { user, logout } = useContext(AuthContext)
+    const navigate = useNavigate()
 
 
-return (
-<nav className="bg-white shadow-sm px-4 py-3 flex items-center justify-between">
-<div className="flex items-center gap-4">
-<Link to="/" className="font-bold text-xl">Prephub</Link>
-<Link to="/chat" className="text-sm text-gray-600">Chat</Link>
-<Link to="/pyq" className="text-sm text-gray-600">PYQ</Link>
-<Link to="/quiz" className="text-sm text-gray-600">Quiz</Link>
+    return (
+        <nav className="sticky top-0 w-full flex justify-between items-center px-4 md:px-[8%] py-5 z-50 bg-[#ECFDF5] ">
+            <Link to="/" className="font-bold text-xl logo">Prephub</Link>
+            <div className="flex items-center gap-4 nav-links">
 
-</div>
-<div className='flex gap-10'>
-    <button className='px-3 py-2 rounded-sm bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-[#ffffff]'><Link to="/register" className="text-sm ">Signup</Link></button>
-     <button className='px-3 py-2 rounded-sm bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600  text-[#ffffff]'><Link to="/login" className="text-sm ">Login</Link></button>
-</div>
-<div>
-{user ? (
-<div className="flex items-center gap-3">
-<button
-onClick={() => { logout(); navigate('/login') }}
-className="px-3 py-1 border rounded"
->Logout</button>
-</div>
-) : (
-<div className="flex gap-2">
-<Link to="/login" className="text-sm">Login</Link>
-<Link to="/register" className="text-sm">Register</Link>
-</div>
-)}
-</div>
-</nav>
-)
+                <Link to="/chat" className="text-sm text-gray-600 hidden sm:block">Ai Mentor</Link>
+                <Link to="/pyq" className="text-sm text-gray-600 hidden sm:block">Analyze Resume</Link>
+                <Link to="/quiz" className="text-sm text-gray-600 hidden sm:block">Quiz</Link>
+
+            </div>
+
+            <div>
+                {user ? (
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={() => { logout(); navigate('/login') }}
+                            className="px-3 py-1 border rounded primary-btn"
+                        >Logout</button>
+                    </div>
+                ) : (
+                    <div className='flex gap-5 md:gap-10'>
+                        <button className='px-3 py-2 rounded-sm primary-btn text-[#ffffff]'><Link to="/register" className="text-sm ">Signup</Link></button>
+                        <button className='px-3 py-2 rounded-sm primary-btn  text-[#ffffff]'><Link to="/login" className="text-sm ">Login</Link></button>
+                    </div>
+                )}
+            </div>
+        </nav>
+    )
 }

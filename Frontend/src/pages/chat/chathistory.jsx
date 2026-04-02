@@ -44,13 +44,13 @@ export default function ChatHistory() {
  }
     return (
         <>
-            <div className='p-2 mt-50'>
-                <p>your chats</p>
+            <div className='  p-2 mt-50'>
+                <p className='text-xl font-bold'>Your chats</p>
                 {threads.map((chat, index) => (
                     <ol>
-                        <li key={index} onClick={() => changethread(chat.threadid)} className=' group mt-3 flex justify-between items-center hover:bg-blue-600'>{chat.question} 
-                        <button onClick={(e)=> { e.stopPropagation();
-                            handledelete(chat.threadid)}} className="opacity-0 group-hover:opacity-100 ">
+                        <li key={index} onClick={() => changethread(chat.threadid)} className=' group mt-3 flex justify-between items-center hover:bg-[#22C55E]'>{chat.question} 
+                        <button onClick={(e)=> {
+                            handledelete(chat.threadid)}} className="opacity-0 group-hover:opacity-100 hover:cursor-pointer ">
                             <i className="fa-solid fa-delete-left"></i>
                         </button>
                         </li>

@@ -22,14 +22,14 @@ export default function Genratequiz()
          initial={{opacity:0,scale:0.8, y:20}}
   animate={{opacity:1,scale:1, y:0}}
   transition={{duration:0.6}}
-       className="bg-[#121212] rounded-xl text-gray-200 w-100 m-auto mt-50 text-white p-5 text-center ">
+       className="bg-[#1f1f1f] rounded-xl text-gray-200 w-[90%] md-[90%] lg:w-100  m-auto mt-50 text-white p-5 text-center ">
         <h1 className="text-3xl  font-sans font-bold mb-10">Select Difficulty level</h1>
      <div className="text-center text-xl">
            {options.map((opt)=>{
          return <label key={opt} ><input type="radio" name="Difficulty" value={opt} checked={level===opt} onChange={(e)=>setlevel(e.target.value)} />{opt} <br /></label>
         })}
      </div>
-        <button className="p-3 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white mt-10 border-2 rounded-xl hover:rounded-sm" onClick={handlegenration}>Genrate quiz</button>
+        <button className="mt-5 primary-btn" onClick={handlegenration}>Genrate quiz</button>
        </motion.div>
         </>
     )

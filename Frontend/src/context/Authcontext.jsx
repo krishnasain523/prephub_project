@@ -46,8 +46,8 @@ return res
 }
 
 
-const logout = () => {
-clearToken()
+const logout = async() => {
+await axios.post("/auth/logout", {}, { withCredentials: true });
 setUser(null)
 }
 
