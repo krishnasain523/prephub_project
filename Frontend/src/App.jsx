@@ -10,7 +10,6 @@ import Login from './pages/auth/login'
 import Register from './pages/auth/register'
 import Dashboard from './pages/dashboard'
 import ChatPage from './pages/chat/chatpage'
-import PYQ from './pages/pyq'
 import QuizSubjects from './pages/quiz/quizsubjects'
 import QuizTopics from './pages/quiz/quiztopics'
 import QuizTake from './pages/quiz/quiztake'
@@ -41,7 +40,6 @@ export default function App() {
                                     <Route path="/" element={<Dashboard />} />
                                     <Route path="/dashboard" element={<Dashboard />} />
                                     <Route path="/chat" element={<ChatPage />} />
-                                    <Route path="/pyq" element={<PYQ />} />
                                     <Route path="/quiz" element={<QuizSubjects />} />
                                     <Route path="/resume" element={<Upload />} />
                                     <Route path="/resume/score" element={<Showscore />} />
