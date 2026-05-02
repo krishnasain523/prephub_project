@@ -12,7 +12,7 @@ export default function Currsub()
       useEffect(()=>{
        const fetch = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/subjects/${id}`)
+                const res = await axios.get(`https://prephub-project-2.onrender.com/api/subjects/${id}`)
                 setcurrsub(res.data);
             } catch (err) { console.error(err) }
         }

@@ -16,7 +16,7 @@ export default function Upload() {
             formdata.append("resume", file);
             formdata.append("description", value);
             setLoading(false);
-            const res = await axios.post("http://localhost:3000/api/upload", formdata, {
+            const res = await axios.post("https://prephub-project-2.onrender.com/api/upload", formdata, {
                 withCredentials: true
             })
             setLoading(true);

@@ -12,7 +12,7 @@ const navigate=useNavigate();
         // fetch subjects from backend - adjust endpoint as needed
         const fetch = async () => {
             try {
-                const res = await axios.get('http://localhost:3000/api/subjects')
+                const res = await axios.get('https://prephub-project-2.onrender.com/api/subjects')
                 setSubjects(res.data)
                 console.log(res.data)
             } catch (err) { console.error(err) }

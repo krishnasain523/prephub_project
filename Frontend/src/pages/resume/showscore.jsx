@@ -7,7 +7,7 @@ export default function Showscore() {
   useEffect(() => {
     const fatch = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/upload/resume");
+        const res = await axios.get("https://prephub-project-2.onrender.com/api/upload/resume");
         console.log(res.data);
         setresumescore(res.data);
       } catch (error) {

@@ -7,7 +7,7 @@ export default function ChatHistory() {
     useEffect(() => {
         const fatchchats = async () => {
             try {
-                const res = await axios.get("http://localhost:3000/api/chat");
+                const res = await axios.get("https://prephub-project-2.onrender.com/api/chat");
                 setthreads(res.data.chat);
             } catch (error) {
                 console.log(error);
@@ -22,7 +22,7 @@ export default function ChatHistory() {
         setnewchat(false)
         const fatchchatmassege = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/chat/${threadid}`, { withCredentials: true });
+                const res = await axios.get(`https://prephub-project-2.onrender.com/api/chat/${threadid}`, { withCredentials: true });
                 setprevchats(res.data.massege)
             } catch (error) {
                 console.log(error);
@@ -34,7 +34,7 @@ export default function ChatHistory() {
    const deletechat=async()=>
    {
      try {
-        const res=await axios.delete(`http://localhost:3000/api/chat/${threadid}`,{withCredentials:true})
+        const res=await axios.delete(`https://prephub-project-2.onrender.com/api/chat/${threadid}`,{withCredentials:true})
          console.log(res)
     } catch (error) {
       console.log(error)  

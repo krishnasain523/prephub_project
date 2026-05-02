@@ -41,7 +41,7 @@ export default function QuizTake() {
         const fatchanswer = async () => {
             try {
                 const body = { topic: topicname, catagory: catagory, difficultylevel: difficulty };
-                const res = await axios.post(`http://localhost:3000/api/subjects/${id}/startquiz`, body, { withCredentials: true });
+                const res = await axios.post(`https://prephub-project-2.onrender.com/api/subjects/${id}/startquiz`, body, { withCredentials: true });
                 const raw = res.data.answer;
                 console.log(raw);
                 let cleaned = raw.trim();
