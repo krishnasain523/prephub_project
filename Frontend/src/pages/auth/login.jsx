@@ -21,7 +21,7 @@ export default function Login() {
         }
     }
 const googlelogin=()=>{
-    window.location.href="http://localhost:3000/auth/google";
+    window.location.href="https://prephub-project-2.onrender.com/auth/google";
 }
 
     return (
