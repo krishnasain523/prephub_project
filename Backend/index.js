@@ -30,7 +30,7 @@ dbconnect();
 app.use(express.json());
 app.use(cookieparser());
 app.use(cors({
-    origin:["http://localhost:5173","https://prephub-project.vercel.app"],
+    origin:["http://localhost:5173","https://prephub-frontend-xi.vercel.app"],
     credentials:true
 }
 ))
