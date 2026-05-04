@@ -16,7 +16,7 @@ const checkauth=async()=>
 {
     try
 {
-    const res= await axios.get("/auth/me",{withCredentials:true});
+    const res= await axios.get("https://prephub-project-2.onrender.com/auth/me",{withCredentials:true});
     setUser(res.data.user);
 }
 catch(err)
@@ -33,21 +33,21 @@ checkauth();
 
 
 const login = async (email, password) => {
-const res = await axios.post('/auth/login', { email, password }, { withCredentials: true } )
-  const resp = await axios.get("/auth/me", { withCredentials: true });
+const res = await axios.post('https://prephub-project-2.onrender.com/auth/login', { email, password }, { withCredentials: true } )
+  const resp = await axios.get("https://prephub-project-2.onrender.com/auth/me", { withCredentials: true });
   setUser(resp.data.user);
 return res
 }
 
 
 const register = async (payload) => {
-const res = await axios.post('/auth/register', payload)
+const res = await axios.post('https://prephub-project-2.onrender.com/auth/register', payload)
 return res
 }
 
 
 const logout = async() => {
-await axios.post("/auth/logout", {}, { withCredentials: true });
+await axios.post("https://prephub-project-2.onrender.com/auth/logout", {}, { withCredentials: true });
 setUser(null)
 }
 
