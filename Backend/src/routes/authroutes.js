@@ -21,6 +21,7 @@ router.get(
     })
     res.cookie('token', token, {
       httpOnly: true,
+      secure:true,
       sameSite: 'none'
     })
     res.redirect(`${process.env.frontendurl}/dashboard`)
