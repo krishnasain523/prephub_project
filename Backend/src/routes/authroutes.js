@@ -21,7 +21,7 @@ router.get(
     })
     res.cookie('token', token, {
       httpOnly: true,
-      sameSite: 'lax'
+      sameSite: 'none'
     })
     res.redirect(`${process.env.frontendurl}/dashboard`)
   }
@@ -33,8 +33,8 @@ router.post(
   asynchandler(async (req, res) => {
     res.clearCookie('token', {
       httpOnly: true,
-      secure: false,
-      sameSite: 'lax'
+      secure: true,
+      sameSite: 'none'
     })
     res.json({ massege: 'logout successfully' })
   })
