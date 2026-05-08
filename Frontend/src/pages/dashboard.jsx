@@ -56,7 +56,7 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Section */}
-      <div className="grid md:grid-cols-3 gap-6">
+      {/* <div className="grid md:grid-cols-3 gap-6">
 
         <div className="bg-white p-5 rounded shadow text-center">
           <h3 className="text-2xl font-bold">12</h3>
@@ -73,7 +73,7 @@ export default function Dashboard() {
           <p className="text-gray-500">AI Mentoring Sessions</p>
         </div>
 
-      </div>
+      </div> */}
 
     </div>
   );

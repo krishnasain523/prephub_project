@@ -14,7 +14,7 @@ export default function Navbar() {
             <div className="flex items-center gap-4 nav-links">
 
                 <Link to="/chat" className="text-sm text-gray-600 hidden sm:block">Ai Mentor</Link>
-                <Link to="/pyq" className="text-sm text-gray-600 hidden sm:block">Analyze Resume</Link>
+                <Link to="/resume" className="text-sm text-gray-600 hidden sm:block">Analyze Resume</Link>
                 <Link to="/quiz" className="text-sm text-gray-600 hidden sm:block">Quiz</Link>
 
             </div>
