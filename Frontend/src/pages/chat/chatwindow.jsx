@@ -21,7 +21,7 @@ export default function ChatWindow() {
       setLoading(false);
     }
     catch (err) {
-      console.log(err)
+      console.log(err.response)
     }
   }
   useEffect(() => {
