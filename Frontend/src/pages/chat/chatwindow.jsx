@@ -14,7 +14,7 @@ export default function ChatWindow() {
     try {
       setLoading(true);
       setnewchat(false);
-      const res = await axios.post('/api/chat', { question: promt, threadid: currthread })
+      const res = await axios.post('https://prephub-frontend-xi.vercel.app/api/chat', { question: promt, threadid: currthread })
       setreply(res.data.answer);
       //  setprevchats(prevchats=>([...prevchats,{role:"user",content:promt},{role:"gpt",content:reply}]))
       //  setMessages(res.data.massege);

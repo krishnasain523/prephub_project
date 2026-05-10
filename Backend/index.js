@@ -22,6 +22,7 @@ const cookieparser=require("cookie-parser");
 const passport=require("passport");
 const Subjects=require("./src/models/subjectschema");
 const Data=require("./src/seed/data.seed");
+const courseroute = require("./src/routes/courseroutes")
 require("./src/config/passport");
 
 const initdata=
@@ -73,5 +74,6 @@ app.use("/auth",authroutes);
 app.use("/api",quizroutes);
 app.use("/api",pyqroutes);
 app.use("/api", chatroutes);
+app.use("/api",courseroute);
 app.use("/api",resumeroutes);
 app.use(errorhandler);
