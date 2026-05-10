@@ -29,7 +29,8 @@ export default function Chats() {
     }, [prevchats])
     return (<>
         <div className='chats '>
-            {
+           <div className='chatwrapper'>
+               {
                 prevchats?.slice(0, -1).map((chat, indx) => (
                     <div className="userdiv " key={indx}>
                         {chat.role === 'user' ? <p className="usermassege">{chat.content}</p>
@@ -51,7 +52,7 @@ export default function Chats() {
                 prevchats.length > 0 && (
                     <>
                         {latestreply === null ?
-                            <div className='gptdiv' key={"non-typing"}>
+                            <div className='userdiv' key={"non-typing"}>
                                 <ReactMarkdown remarkPlugins={remarkGfm} rehypePlugins={rehypeHiglight}>{prevchats[prevchats.length - 1].content}</ReactMarkdown>
                             </div> :
                             <div className='gptdiv' key={"typing"}>
@@ -59,6 +60,7 @@ export default function Chats() {
                             </div>}
                     </>
                 )}
+           </div>
 
         </div>
     </>)

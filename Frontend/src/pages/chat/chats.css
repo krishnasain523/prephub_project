@@ -1,50 +1,51 @@
-.chats
-{
-    /* max-width: 700px; */
+.chats{
+    flex: 1;
     overflow-y: auto;
     padding: 1rem;
     background-color:#ECFDF5;
+}
+
+.chatwrapper{
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
-    margin-left: 10px;
-
+    gap: 20px;
 }
-.usermassege
-{
-/* width: 20rem; */
-background-color: #1f1f1f;
-padding: 0.4rem;
-padding-left: 20px;
-padding-right: 20px;
-border-radius: 22px;
+
+.userdiv{
+   width: fit-content;
+   max-width: 85%;
+   align-self: flex-end;
+   color: white;
+}
+
+.gptdiv{
+   width: fit-content;
+   max-width: 85%;
+   align-self: flex-start;
+   color: black;
+}
+
+.usermassege{
+    background-color: #1f1f1f;
+    padding: 0.6rem 1rem;
+    border-radius: 20px;
+    word-wrap: break-word;
+}
 
 /* margin-left: 50px; */
 /* padding-bottom: 20px;
 padding-left: 10px;
 padding-right: 20px;
 border-radius: 14px; */
-}
+
 .gptmassege
 {
 background-color: #1f1f1f;
 padding: 0.5rem;
 text-align: left;
-}
-.userdiv
-{
-   max-width: 500px;
-   margin-top: 5rem;
-    align-self: flex-end;
-  padding: 10px;
- color: white;
-}
-.gptdiv
-{
- max-width: 500px;
-  align-self: flex-start;
- margin-top: 40px;
- color: black;
 }
 .gptdiv ol {
   list-style-type: decimal;
