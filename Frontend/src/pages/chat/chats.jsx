@@ -8,7 +8,6 @@ import remarkGfm from "remark-gfm";
 import "highlight.js/styles/github-dark.css";
 export default function Chats() {
     const { prevchats, reply } = useContext(mycontext);
-    const [ch, setch] = useState({});
     const [latestreply, setlatestreply] = useState(null);
     useEffect(() => {
         if (!prevchats?.length) return;
@@ -32,7 +31,7 @@ export default function Chats() {
         <div className='chats '>
             {
                 prevchats?.slice(0, -1).map((chat, indx) => (
-                    <div className="userdiv  relative left-20 md:left-20 lg:left-40" key={indx}>
+                    <div  key={indx}>
                         {chat.role === 'user' ? <p className="usermassege">{chat.content}</p>
                             : (
                                 <div className="gptdiv" key={indx}>
