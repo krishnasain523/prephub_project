@@ -31,7 +31,7 @@ export default function Chats() {
         <div className='chats '>
             {
                 prevchats?.slice(0, -1).map((chat, indx) => (
-                    <div  key={indx}>
+                    <div className="userdiv " key={indx}>
                         {chat.role === 'user' ? <p className="usermassege">{chat.content}</p>
                             : (
                                 <div className="gptdiv" key={indx}>
