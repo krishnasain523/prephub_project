@@ -3,7 +3,7 @@ import './chats.css'
 import { useContext, useEffect, useState } from "react"
 import { mycontext } from "../../context/mycontext"
 import ReactMarkdown from "react-markdown";
-import rehypeHiglight from "rehype-highlight"
+import rehypeHighlight from "rehype-highlight"
 import remarkGfm from "remark-gfm";
 import "highlight.js/styles/github-dark.css";
 export default function Chats() {
@@ -55,7 +55,7 @@ export default function Chats() {
                         <>
                             {latestreply === null ?
                                 <div className='userdiv' key={"non-typing"}>
-                                    <ReactMarkdown remarkPlugins={remarkGfm} rehypePlugins={rehypeHiglight}>{prevchats[prevchats.length - 1].content}</ReactMarkdown>
+                                    <ReactMarkdown remarkPlugins={remarkGfm} rehypePlugins={rehypeHighlight}>{prevchats[prevchats.length - 1].content}</ReactMarkdown>
                                 </div> :
                                 <div className='gptdiv'>
                                     <div className='gptmessage'>
