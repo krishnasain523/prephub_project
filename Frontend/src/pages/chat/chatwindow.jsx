@@ -32,7 +32,7 @@ export default function ChatWindow() {
   }, [reply])
 
   return (
-    <div className="flex  flex-col h-full">
+    <div className="flex w-[400px] md:max-w-[500px] lg:max-w-[700px]   flex-col h-full">
       <div className="text-gray-500">Select or create a chat to start.</div>
       <div className="flex-1 flex flex-col gap-3 overflow-auto mb-3">
       </div>
@@ -40,7 +40,7 @@ export default function ChatWindow() {
 
       <Chats />
       {loading && <ScaleLoader className=' m-auto mb-10' />}
-      <div className="flex mb-8 px-2 md:px-10 lg:px-30   gap-2">
+      <div className="flex justify-center mb-8 mt-5 px-2 md:px-10 lg:px-30   gap-2">
         <input value={promt} onChange={e => setpromt(e.target.value)} className="flex-1 border p-2 rounded" placeholder="Ask anything..." />
         <button onClick={send} className="primary-btn">Send</button>
       </div>

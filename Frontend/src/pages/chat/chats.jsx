@@ -15,7 +15,7 @@ export default function Chats() {
             setlatestreply(null);
             return
         }
-
+           console.log(prevchats)
         const content = reply.split(" ");
         let indx = 0;
         const intervel = setInterval(() => {
@@ -29,22 +29,25 @@ export default function Chats() {
     }, [prevchats])
     return (<>
         <div className='chats '>
-            <div className='chatwrapper'>
+            
                 {
+                   
                     prevchats?.slice(0, -1).map((chat, indx) => (
                         <div className="userdiv " key={indx}>
-                            {chat.role === 'user' ? <p className="usermassege">{chat.content}</p>
+                            {chat.role === 'user' ? <div className='flex  justify-end px-20 mb-5'><p className="usermassege ">{chat.content}</p></div>
                                 : (
-                                    <div className="gptdiv" key={indx}>
-                                        <div className="gptmessage">
+                                   
+                                        <div className='flex justify-center'>
+                                            <div className="gptmessage">
                                             <ReactMarkdown
                                                 remarkPlugins={[remarkGfm]}
                                                 rehypePlugins={[rehypeHighlight]}
                                             >
                                                 {chat.content}
                                             </ReactMarkdown>
-                                        </div>
+                                    
                                     </div>
+                                        </div>
                                 )}
                         </div>
 
@@ -69,7 +72,7 @@ export default function Chats() {
                                 </div>}
                         </>
                     )}
-            </div>
+           
 
         </div>
     </>)
