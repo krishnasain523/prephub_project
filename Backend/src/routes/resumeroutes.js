@@ -68,7 +68,7 @@ Do not include explanation. and give me sugestion whats new should i write in re
     const education_score = resumeinfo.education_relevent ? 15 : 5
     const overall_score = skill_score + exprience_score + education_score
     
-    const saveresume = resume.create({
+    const saveresume = await resume.create({
       overall_score: Math.round(overall_score),
       skill_score: Math.round(skill_score),
       exprience_score: Math.round(exprience_score),

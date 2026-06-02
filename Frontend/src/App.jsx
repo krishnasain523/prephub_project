@@ -8,7 +8,7 @@ import ProtectedRoute from './components/protectedroute'
 
 import Login from './pages/auth/login'
 import Register from './pages/auth/register'
-import Dashboard from './pages/dashboard'
+import Dashboard from './pages/Dashboard/dashboard'
 import ChatPage from './pages/chat/chatpage'
 import QuizSubjects from './pages/quiz/quizsubjects'
 import QuizTopics from './pages/quiz/quiztopics'
@@ -21,10 +21,19 @@ import Genratequiz from './pages/quiz/genratequiz'
 import Quizsubmit from './pages/quiz/quizsubmit'
 import Upload from './pages/resume/upload'
 import Showscore from './pages/resume/showscore'
-
+import useonlinestatus from"../src/utils/useonlinestatus"
+import Networkerr from './components/networkerr'
 
 export default function App() {
+    const checkstatus=useonlinestatus()
+    if(!checkstatus)
+    {
+        return <Networkerr/>
+    }
+    else
+    {
     return (
+
         <BrowserRouter>
             <AuthProvider>
                 <div className="min-h-screen flex flex-col">
@@ -55,4 +64,5 @@ export default function App() {
             </AuthProvider>
         </BrowserRouter>
     )
+}
 }

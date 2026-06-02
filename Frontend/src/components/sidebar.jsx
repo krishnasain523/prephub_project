@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Sidebar() {
 return (
-<aside className="w-64 border-r p-4 hidden md:block">
+<aside className="w-64 border-r p-4 block sm:hidden ">
 <nav className="flex flex-col gap-2">
 <Link to="/dashboard" className="py-2 px-3 rounded hover:bg-gray-100">Dashboard</Link>
 <Link to="/chat" className="py-2 px-3 rounded hover:bg-gray-100">Chat</Link>

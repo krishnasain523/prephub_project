@@ -1,0 +1,57 @@
+.banner
+{width: 100%;
+ height: 100vh;
+ display: flex;
+ justify-items: center;
+ overflow: hidden;
+ position: relative;
+ /* background-color: aqua; */
+
+}
+.banner .slider
+{
+position: absolute;
+width: 100px;
+height: 250px;
+top: 15%;
+left: calc(50% - 100px);
+transform-style: preserve-3d;
+transform: perspective(1000px);
+animation: autorun 20s linear infinite;
+
+
+}
+
+@keyframes autorun {
+    from
+    {
+transform: perspective(1000px)  rotateX(-5deg) rotateY(360deg);
+    }
+    to
+    {
+transform: perspective(1000px) rotateX(-5deg) rotateY(0deg);
+    }
+}
+/* .banner .content
+{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+} */
+.banner .content
+{
+     box-shadow: 0 12px 10px -10px rgba(0,0,0,0.3);
+}
+.banner .slider .items
+{
+position: absolute;
+inset: 0 0 0 0;
+transform:rotateY(calc((var(--position) - 1)*(360 / var(--quantity))*1deg))
+translateZ(500px);
+}
+.cardimg
+{
+    /* width: 100%;
+    height: 100%;
+    object-fit: cover; */
+}

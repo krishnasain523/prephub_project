@@ -5,8 +5,10 @@ import App from './App.jsx'
 import Myprovider from './context/myprovider.jsx'
 
 createRoot(document.getElementById('root')).render(
+  
   <StrictMode>
     <Myprovider>
+      
       <App />
     </Myprovider>
   </StrictMode>,
