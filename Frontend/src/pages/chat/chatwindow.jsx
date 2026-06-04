@@ -32,7 +32,7 @@ export default function ChatWindow() {
   }, [reply])
 
   return (
-    <div className="flex w-[400px] md:max-w-[500px] lg:max-w-[700px]   flex-col h-full">
+    <div className="flex w-full   md:max-w-[500px] lg:max-w-[700px]   flex-col h-full">
       <div className="text-gray-500">Select or create a chat to start.</div>
       <div className="flex-1 flex flex-col gap-3 overflow-auto mb-3">
       </div>

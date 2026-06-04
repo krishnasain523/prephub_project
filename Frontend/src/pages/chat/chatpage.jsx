@@ -49,7 +49,7 @@ export default function ChatPage() {
     }
     const [open,setopen]=useState(false);
     return (
-        <div className="flex h-[calc(100vh-64px)]">
+        <div className="flex h-[calc(100vh-64px)] ">
             <div className={` w-70  p-3 fixed md:sticky bg-[#ECFDF5] h-full tranform transition-transform duration-300 ${open?"tranlate-x-20":"-translate-x-full"} md:translate-x-0 left-4 flex flex-col`}>
                 <button className=' relative left-35 top-20  block md:hidden' onClick={(e)=>{setopen(!open)}}>{open?<ArrowBackIosNewIcon  />:<ArrowForwardIosIcon />}</button>
                 <div className="flex items-center justify-between mb-3">

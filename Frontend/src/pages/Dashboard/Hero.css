@@ -14,7 +14,7 @@ position: absolute;
 width: 100px;
 height: 250px;
 top: 15%;
-left: calc(50% - 100px);
+left: calc(55% - 100px);
 transform-style: preserve-3d;
 transform: perspective(1000px);
 animation: autorun 20s linear infinite;

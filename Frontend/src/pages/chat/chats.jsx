@@ -29,10 +29,8 @@ export default function Chats() {
     }, [prevchats])
     return (<>
         <div className='chats '>
-            
                 {
-                   
-                    prevchats?.slice(0, -1).map((chat, indx) => (
+                     prevchats?.slice(0, -1).map((chat, indx) => (
                         <div className="userdiv " key={indx}>
                             {chat.role === 'user' ? <div className='flex  justify-end px-20 mb-5'><p className="usermassege ">{chat.content}</p></div>
                                 : (
