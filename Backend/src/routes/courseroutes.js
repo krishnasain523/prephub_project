@@ -83,7 +83,7 @@ router.delete(
     if (!Course) {
       res.status(404).json({ massage: 'course not find', success: false })
     }
-    res.status(200).json({ success: true }, Course)
+    res.status(200).json({ success: true })
   })
 )
 
