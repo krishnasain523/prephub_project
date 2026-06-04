@@ -46,7 +46,7 @@ router.get(
       res.status(404).json({ massage: 'courses not listed', success: false })
     }
     res.status(200).json({ success: true, data: Courses })
-  })
+  })   
 )
 
 router.get(

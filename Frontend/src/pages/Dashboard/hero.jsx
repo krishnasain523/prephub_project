@@ -1,6 +1,18 @@
+import { useEffect } from "react";
 import Coursecard from "./coursecard";
 import "./Hero.css"
+import axios from "axios";
+
+
 export default function Hero() {
+
+    useEffect(()=>{
+   const fetch=async()=>
+   {
+      const result=await axios.get("")
+   }
+   fetch()
+    },[])
     return (<>
         <div className="banner">
             <div className="slider z-5" style={{ "--quantity": 5 }}>
