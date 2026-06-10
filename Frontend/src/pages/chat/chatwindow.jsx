@@ -15,6 +15,7 @@ export default function ChatWindow() {
       setLoading(true);
       setnewchat(false);
       const res = await axios.post('https://prephub-project-2.onrender.com/api/chat', { question: promt, threadid: currthread })
+      console.log(res.data.answer);
       setreply(res.data.answer);
       //  setprevchats(prevchats=>([...prevchats,{role:"user",content:promt},{role:"gpt",content:reply}]))
       //  setMessages(res.data.massege);
