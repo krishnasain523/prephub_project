@@ -34,14 +34,21 @@ const genratetext = async question => {
       body: JSON.stringify(body)
     })
 
-    const data = await response.json()
-    // console.log('Gemini Response:',data.candidates[0].content.parts[0].text)
-    const text= data?.candidates[0]?.content.parts[0]?.text;
-     if(!text)
-    {
-      console.error("grmini empty response");
-      return null
-    }
+   const data = await response.json();
+
+if (!response.ok) {
+  console.error("Gemini API Error:", data);
+  return null;
+}
+
+console.log("Gemini Response:", JSON.stringify(data, null, 2));
+
+const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+if (!text) {
+  console.error("Gemini returned empty response:", data);
+  return null;
+}
     return text
   } catch (error) {
     console.error('Error calling Gemini API:', error)
