@@ -4,7 +4,7 @@ const multer = require('multer')
 const pdfParse = require('pdf-parse')
 const asynchandler = require('../midleware/asynchandler')
 const { uploadcloudinary } = require('../config/cloudconfig')
-const { genratetext } = require('../config/gemini')
+const { genratetext, genrateanswer } = require('../config/gemini')
 const upload = multer({ storage: multer.memoryStorage() })
 const resume = require('../models/resumeschema')
 const verifyuser=require("../midleware/authmiddleware")
@@ -45,7 +45,7 @@ Do not include explanation. and give me sugestion whats new should i write in re
        resumetext:${resumetext}
        description:${description}
    `
-    const result = await genratetext(promt)
+    const result = await genrateanswer(promt)
     if (!result) {
       return res.status(500).json({ error: 'Empty AI response' })
     }
