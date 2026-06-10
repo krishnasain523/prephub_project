@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Progressbar from "./progressbar";
 import axios from "axios";
+import { PulseLoader } from "react-spinners";
 
 export default function Showscore() {
   const [resumescore, setresumescore] = useState({ overall_score:0, skill_score:0, exprience_score:0, education_score:0,});
@@ -60,7 +61,7 @@ export default function Showscore() {
           </ui>
         </div>)}
       </div>
-    </div>:<div>loading....</div>
+    </div>:<PulseLoader color="#22C55E" className="w-40 h-20  m-auto mt-80" />
    }
 
   </>)

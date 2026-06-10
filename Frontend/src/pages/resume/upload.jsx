@@ -4,6 +4,7 @@ import { duration } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { mycontext } from "../../context/mycontext";
+import { PulseLoader } from "react-spinners";
 
 export default function Upload() {
     const [value, setvalue] = useState("");
@@ -46,7 +47,7 @@ export default function Upload() {
                 <button className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 py-1 text-xl px-2 rounded-sm primary-btn" onClick={handlesubmit}>Analyze</button>
             </div>
 
-        </motion.div> : <div>loading...</div>}
+        </motion.div> :<PulseLoader color="#22C55E" className="w-40 h-20  m-auto mt-80" />}
 
     </>)
 }
