@@ -11,7 +11,7 @@ router.post("/subject",verifyadmin,asynchandler(async(req,res)=>
 {
          const{name}=req.body;      
           const newsubject=await subjects.create({name});
-        res.status(201).json(newsubject,{massege:"subject created"});
+        res.status(201).json(newsubject);
         
 }));
 
@@ -83,6 +83,31 @@ Return the response strictly in this format:
 `;
 
 const answer=await genrateanswer(prompt);
+ if (
+      !answer ||
+      answer?.error === "quota" ||
+      answer?.error === "api_error" ||
+      answer?.error === "empty_response" ||
+      answer?.error === "server_error"
+    ) {
+      return res.status(200).json({
+        answer: JSON.stringify({
+          mcqs: [
+            {
+              id: 1,
+              question: "Fallback Question",
+              options: {
+                a: "Option A",
+                b: "Option B",
+                c: "Option C",
+                d: "Option D"
+              },
+              correctAnswer: "a"
+            }
+          ]
+        })
+      });
+    }
 res.status(200).json({answer});    
 }))
 module.exports=router;

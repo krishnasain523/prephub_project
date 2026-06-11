@@ -16,12 +16,24 @@ router.post(
         .json({ error: "Request body must contain a string field 'data'" })
     }
     const answer = await genrateanswer(question)
-    if (answer.error === 'quota') {
-      return res.json({
-        massege: 'AI quota exceeded. Please wait a few seconds and try again.'
-      })
-    }
-    let chat = await chats.findOne({threadid})
+    console.log(answer)
+     if (answer?.error === "quota") {
+  return res.json({
+    answer:"I am currently experiencing high traffic. Please try again in a few moments."
+  });
+}
+
+if (
+  answer?.error === "api_error" ||
+  answer?.error === "empty_response" ||
+  answer?.error === "server_error"
+) {
+  return res.json({
+    answer:
+      "Sorry, I am temporarily unavailable. Please try again later."
+  });
+}
+    let chat = await chats.findOne({ threadid })
     if (!chat) {
       chat = new chats({
         threadid,
@@ -36,7 +48,7 @@ router.post(
       chat.massege.push({ role: 'assestent', content: answer })
     }
     await chat.save()
-    res.json({ answer, chat })
+    res.json({answer,chat})
   })
 )
 // show all chats
@@ -66,7 +78,7 @@ router.get(
   asynchandler(async (req, res) => {
     const { threadid } = req.params
     const chat = await chats.findOne({ threadid })
-    res.json({ massege:chat.massege })
+    res.json({ massege: chat.massege })
   })
 )
 // delete particuler chat
@@ -75,7 +87,7 @@ router.delete(
   verifyuser,
   asynchandler(async (req, res) => {
     const { threadid } = req.params
-    await chats.deleteOne({ threadid})
+    await chats.deleteOne({ threadid })
     res.json({ massege: `${threadid} chat deleted` })
   })
 )

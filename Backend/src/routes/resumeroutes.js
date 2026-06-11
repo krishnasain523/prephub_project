@@ -7,7 +7,7 @@ const { uploadcloudinary } = require('../config/cloudconfig')
 const { genratetext, genrateanswer } = require('../config/gemini')
 const upload = multer({ storage: multer.memoryStorage() })
 const resume = require('../models/resumeschema')
-const verifyuser=require("../midleware/authmiddleware")
+const verifyuser = require('../midleware/authmiddleware')
 router.post(
   '/upload',
   upload.single('resume'),
@@ -46,11 +46,43 @@ Do not include explanation. and give me sugestion whats new should i write in re
        description:${description}
    `
     const result = await genrateanswer(promt)
-    if (!result) {
-      return res.status(500).json({ error: 'Empty AI response' })
+
+   
+
+    if (
+      !result ||
+      result?.error === 'quota' ||
+      result?.error === 'api_error' ||
+      result?.error === 'empty_response' ||
+      result?.error === 'server_error'
+    ) {
+      const fallbackResume = {
+        overall_score: 60,
+        skill_score: 25,
+        exprience_score: 20,
+        education_score: 15,
+        matched_skill: ['JavaScript'],
+        missing_skill: ['React', 'Node.js'],
+        matched_softskill: ['Communication'],
+        required_softskill: ['Communication', 'Teamwork'],
+        missing_softskill: ['Teamwork'],
+        weakness:
+          'AI analysis is currently unavailable. This is a fallback response.',
+        improvement_sugestions: [
+          'Add more project details',
+          'Add technical skills section',
+          'Highlight achievements',
+          'Tailor resume to job description'
+        ]
+      }
+
+      return res.status(200).json({
+        message: 'Fallback analysis generated',
+        data: fallbackResume
+      })
     }
-    try {
-      resumeinfo = JSON.parse(result.trim())
+     try {
+     const resumeinfo = JSON.parse(result.trim())
     } catch (err) {
       console.log('Invalid JSON:', result)
       return res.status(500).json({ error: 'Invalid JSON from AI' })
@@ -67,12 +99,12 @@ Do not include explanation. and give me sugestion whats new should i write in re
     const exprience_score = ratio * 30
     const education_score = resumeinfo.education_relevent ? 15 : 5
     const overall_score = skill_score + exprience_score + education_score
-    
+
     const saveresume = await resume.create({
       overall_score: Math.round(overall_score),
       skill_score: Math.round(skill_score),
       exprience_score: Math.round(exprience_score),
-      education_score:Math.round(education_score),
+      education_score: Math.round(education_score),
       matched_skill: resumeinfo.matched_skill,
       missing_skill: resumeinfo.missing_skill,
 
@@ -82,12 +114,15 @@ Do not include explanation. and give me sugestion whats new should i write in re
       weakness: resumeinfo.weakness,
       improvement_sugestions: resumeinfo.improvement_sugestions
     })
-    console.log(saveresume);
-    res.json({ massage: 'resume score saved',data:saveresume })
+    console.log(saveresume)
+    res.json({ massage: 'resume score saved', data: saveresume })
   })
 )
-router.get("/upload/resume",asynchandler(async(req,res)=>{
-  const latestresume=await resume.findOne().sort({createdAt:-1});
-  res.json(latestresume);
-}))
+router.get(
+  '/upload/resume',
+  asynchandler(async (req, res) => {
+    const latestresume = await resume.findOne().sort({ createdAt: -1 })
+    res.json(latestresume)
+  })
+)
 module.exports = router

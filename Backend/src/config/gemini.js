@@ -74,68 +74,42 @@ const genrateanswer = async question => {
 
   try {
     const response = await fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': GEMINI_API_KEY
+        "Content-Type": "application/json",
+        "x-goog-api-key": GEMINI_API_KEY,
       },
-      body: JSON.stringify(body)
-    })
-    const data = await response.json()
+      body: JSON.stringify(body),
+    });
 
+    const data = await response.json();
+
+    console.log("Gemini Status:", response.status);
+
+    // Quota exceeded
     if (data?.error?.code === 429) {
-      console.error('gemini quoto exceed')
-      return { error: 'quota' }
+      console.error("Gemini quota exceeded");
+      return { error: "quota" };
     }
+
+    // Any other API error
     if (!response.ok) {
-      console.error('Gemini API Error:', data)
-      return null
+      console.error("Gemini API Error:", data);
+      return { error: "api_error" };
     }
 
-    console.log('Gemini Response:', JSON.stringify(data, null, 2))
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text
-
+    // Empty response
     if (!text) {
-      console.error('Gemini returned empty response:', data)
-      return null
+      console.error("Gemini returned empty response:", data);
+      return { error: "empty_response" };
     }
-    return text
+
+    return text;
   } catch (error) {
-    console.error('Error calling Gemini API:', error)
+    console.error("Error calling Gemini API:", error);
+    return { error: "server_error" };
   }
 }
-const genrateimage = async resultext => {
-  const url =
-    'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent'
-  const body = {
-    contents: [
-      {
-        parts: [
-          {
-            text: ` create a flowchart type image using this details:\n${resultext}`
-          }
-        ]
-      }
-    ]
-  }
-
-  try {
-    const response = await fetch(`${url}?key=${GEMINI_API_KEY}`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    })
-    const image = await response.json()
-    console.log(image)
-
-    return image
-  } catch (error) {
-    console.error('Error calling Gemini API:', error)
-  }
-}
-
-// Example usage
-module.exports = { genratetext, genrateimage, genrateanswer }
+module.exports = { genratetext, genrateanswer }
